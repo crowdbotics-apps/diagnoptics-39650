@@ -1,13 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ScrollView,
-  Pressable,
-  TextInput,
-  Image
-} from "react-native";
+import { Text, View, StyleSheet, ScrollView, Pressable, TextInput, Image } from "react-native";
 
 const DiagnoseInformation = () => {
   const [country, setCountry] = useState("");
@@ -21,17 +13,9 @@ const DiagnoseInformation = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
   const [isPregnant, setIsPregnant] = useState(false);
   useEffect(() => {
-    setOptions([
-      "Chronic Lung Disease",
-      "Currently under chemotherapy",
-      "Congestive Heart Failure",
-      "Hemodialysis",
-      "Type 1 Diabetes",
-      "Type 2 Diabetes",
-      "None of these",
-      "Other"
-    ]);
+    setOptions(["Chronic Lung Disease", "Currently under chemotherapy", "Congestive Heart Failure", "Hemodialysis", "Type 1 Diabetes", "Type 2 Diabetes", "None of these", "Other"]);
   }, []);
+
   const handleSelect = option => {
     if (selectedOptions.includes(option)) {
       setSelectedOptions(selectedOptions.filter(item => item !== option));
@@ -39,107 +23,49 @@ const DiagnoseInformation = () => {
       setSelectedOptions([...selectedOptions, option]);
     }
   };
-  return (
-    <View style={styles.container}>
+
+  return <View style={styles.container}>
       <ScrollView style={styles.body}>
         <Text style={styles.title}>Step 2</Text>
         <Text style={styles.subHeading}>Bio Metrics</Text>
         <Text style={styles.heading}>Basic Information</Text>
         <Input text="Country" value={country} onChange={setCountry} />
-        <Input
-          text="Phone Number"
-          value={phoneNumber}
-          onChange={setPhoneNumber}
-        />
+        <Input text="Phone Number" value={phoneNumber} onChange={setPhoneNumber} />
         <View style={styles.halfInputs}>
-          <Input
-            text="Gender"
-            value={gender}
-            onChange={setGender}
-            style={styles.input1}
-          />
-          <Input
-            text="Age"
-            value={age}
-            onChange={setAge}
-            style={styles.input2}
-          />
+          <Input text="Gender" value={gender} onChange={setGender} style={styles.input1} />
+          <Input text="Age" value={age} onChange={setAge} style={styles.input2} />
         </View>
         <View style={styles.halfInputs}>
-          <Input
-            text="Height"
-            value={height}
-            onChange={setHeight}
-            style={styles.input1}
-          />
-          <Input
-            text="Weight"
-            value={weight}
-            onChange={setWeight}
-            style={styles.input2}
-          />
+          <Input text="Height" value={height} onChange={setHeight} style={styles.input1} />
+          <Input text="Weight" value={weight} onChange={setWeight} style={styles.input2} />
         </View>
         <Text style={styles.heading}>Medical Information</Text>
-        {options.map((option, index) => (
-          <View style={styles.optionContainer} key={index}>
+        {options.map((option, index) => <View style={styles.optionContainer} key={index}>
             <Pressable onPress={() => handleSelect(option)}>
-              <Image
-                source={
-                  selectedOptions.includes(option)
-                    ? require("./assets/checkboxIconActive.png")
-                    : require("./assets/checkboxIcon.png")
-                }
-              />
+              <Image source={selectedOptions.includes(option) ? require("./assets/checkboxIconActive.png") : require("./assets/checkboxIcon.png")} />
             </Pressable>
             <Text style={styles.optionText}>{option}</Text>
-          </View>
-        ))}
-        <Input
-          text="If you selected 'Other', please indicate here"
-          value={others}
-          onChange={setOthers}
-          textArea={true}
-        />
+          </View>)}
+        <Input text="If you selected 'Other', please indicate here" value={others} onChange={setOthers} textArea={true} />
         <View style={styles.questionContainer}>
           <Text style={styles.questionText}>Are you currently Pregnant?</Text>
           <View style={styles.checkboxContainer}>
             <Pressable onPress={() => setIsPregnant(!isPregnant)}>
-              <Image
-                source={
-                  isPregnant
-                    ? require("./assets/checkboxIconActive.png")
-                    : require("./assets/checkboxIcon.png")
-                }
-              />
+              <Image source={isPregnant ? require("./assets/checkboxIconActive.png") : require("./assets/checkboxIcon.png")} />
             </Pressable>
             <Text style={styles.questionText}>Yes</Text>
             <Pressable onPress={() => setIsPregnant(!isPregnant)}>
-              <Image
-                source={
-                  !isPregnant
-                    ? require("./assets/checkboxIconActive.png")
-                    : require("./assets/checkboxIcon.png")
-                }
-              />
+              <Image source={!isPregnant ? require("./assets/checkboxIconActive.png") : require("./assets/checkboxIcon.png")} />
             </Pressable>
             <Text style={styles.questionText}>No</Text>
           </View>
         </View>
         <Button buttonText="Next" />
       </ScrollView>
-      <Footer
-        titles={["Home", "Diagnose", "Stats", "Map"]}
-        images={[
-          require("./assets/homeIcon.png"),
-          require("./assets/diagnoseIconActive.png"),
-          require("./assets/statsIcon.png"),
-          require("./assets/mapIcon.png")
-        ]}
-        active={1}
-      />
-    </View>
-  );
+      <Footer titles={["Home", "Diagnose", "Stats", "Map"]} images={[require("./assets/homeIcon.png"), require("./assets/diagnoseIconActive.png"), require("./assets/statsIcon.png"), require("./assets/mapIcon.png")]} active={1} />
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -209,34 +135,18 @@ const styles = StyleSheet.create({
     width: "50%"
   }
 });
-
 export default DiagnoseInformation;
 
 const Footer = props => {
   const generator = props.hideTitle ? props.images : props.titles;
-  return (
-    <View style={footerStyles.footer}>
-      {generator.map((title, index) => (
-        <View style={footerStyles.footerItem} key={index}>
-          <Image
-            style={footerStyles.footerImage}
-            source={props.images[index]}
-          />
-          {props.hideTitle
-            ? null
-            : (
-            <Text
-              style={[
-                footerStyles.footerItemText,
-                index === props.active ? footerStyles.active : null
-              ]}>
+  return <View style={footerStyles.footer}>
+      {generator.map((title, index) => <View style={footerStyles.footerItem} key={index}>
+          <Image style={footerStyles.footerImage} source={props.images[index]} />
+          {props.hideTitle ? null : <Text style={[footerStyles.footerItemText, index === props.active ? footerStyles.active : null]}>
               {title}
-            </Text>
-              )}
-        </View>
-      ))}
-    </View>
-  );
+            </Text>}
+        </View>)}
+    </View>;
 };
 
 const footerStyles = StyleSheet.create({
@@ -273,49 +183,14 @@ const footerStyles = StyleSheet.create({
 });
 
 const Input = props => {
-  return (
-    <View style={[inputStyles.inputContainer]}>
-      {props.text
-        ? (
-        <Text style={inputStyles.inputText}>{props.text}</Text>
-          )
-        : null}
+  return <View style={[inputStyles.inputContainer]}>
+      {props.text ? <Text style={inputStyles.inputText}>{props.text}</Text> : null}
 
-      <TextInput
-        style={[
-          inputStyles.input,
-          props.style,
-          props.textArea ? inputStyles.textArea : null
-        ]}
-        placeholder={props.placeholder ? props.placeholder : "Enter"}
-        value={props.value}
-        onChangeText={text => props.onChange(text)}
-        placeholderTextColor={
-          props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"
-        }
-        editable={props.editable !== false}
-        autoCapitalize="none"
-        autoCorrect={false}
-        multiline={!!props.textArea}
-      />
-      {props.errorText
-        ? (
-        <Text style={inputStyles.error}>{props.errorText}</Text>
-          )
-        : null}
-      {props.icon
-        ? (
-        <Image
-          source={props.icon}
-          style={
-            props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText
-          }
-        />
-          )
-        : null}
+      <TextInput style={[inputStyles.input, props.style, props.textArea ? inputStyles.textArea : null]} placeholder={props.placeholder ? props.placeholder : "Enter"} value={props.value} onChangeText={text => props.onChange(text)} placeholderTextColor={props.placeholderTextColor ? props.placeholderTextColor : "#9B9B9B"} editable={props.editable !== false} autoCapitalize="none" autoCorrect={false} multiline={!!props.textArea} />
+      {props.errorText ? <Text style={inputStyles.error}>{props.errorText}</Text> : null}
+      {props.icon ? <Image source={props.icon} style={props.text ? inputStyles.iconWithText : inputStyles.iconWithoutText} /> : null}
       <View style={styles.children}>{props.children}</View>
-    </View>
-  );
+    </View>;
 };
 
 const inputStyles = StyleSheet.create({
@@ -364,14 +239,12 @@ const Button = params => {
   const btnText = {
     color: params.outline ? "#000" : "#fff"
   };
-  return (
-    <View style={buttonStyles.btnContainer}>
+  return <View style={buttonStyles.btnContainer}>
       <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
         <Text style={[buttonStyles.btnText, btnText]}>{params.buttonText}</Text>
         <View style={styles.childrenContainer}>{params.children}</View>
       </Pressable>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({

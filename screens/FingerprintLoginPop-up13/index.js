@@ -2,31 +2,20 @@ import React from "react";
 import { Text, View, StyleSheet, Image, Pressable } from "react-native";
 
 const FingerprintLoginPopUp = () => {
-  return (
-    <View style={styles.container}>
+  return <View style={styles.container}>
       <View style={styles.upper}>
         <View style={styles.iconContainer}>
-          <Image
-            source={require("./assets/fingerprintIcon.png")}
-            style={styles.icon}
-          />
+          <Image source={require("./assets/fingerprintIcon.png")} style={styles.icon} />
         </View>
       </View>
       <View style={styles.lower}>
         <Text style={styles.heading}>Allow Touch ID</Text>
         <Button buttonText="Allow Touch ID" style={styles.button} hideShadow />
-        <Button
-          buttonText="Don't Allow"
-          borderColor="#000"
-          backgroundColor="#fff"
-          textColor="#000"
-          hideShadow
-          style={styles.button}
-        />
+        <Button buttonText="Don't Allow" borderColor="#000" backgroundColor="#fff" textColor="#000" hideShadow style={styles.button} />
       </View>
-    </View>
-  );
+    </View>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -71,8 +60,8 @@ const styles = StyleSheet.create({
     marginHorizontal: 40
   }
 });
-
 export default FingerprintLoginPopUp;
+
 const Button = params => {
   const backgroundColor = params.backgroundColor || "#000";
   const textColor = params.textColor || "#fff";
@@ -84,20 +73,16 @@ const Button = params => {
   const btnText = {
     color: textColor
   };
-  return (
-    <View style={[buttonStyles.btnContainer, params.style]}>
+  return <View style={[buttonStyles.btnContainer, params.style]}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle]}
-          onPress={params.onPress}>
+        <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -123,7 +108,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {

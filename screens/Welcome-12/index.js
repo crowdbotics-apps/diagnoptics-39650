@@ -1,40 +1,21 @@
 import React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  ImageBackground,
-  Dimensions,
-  Pressable
-} from "react-native";
-
+import { Text, View, StyleSheet, ImageBackground, Dimensions, Pressable } from "react-native";
 const windowWidth = Dimensions.get("window").width;
 const windowHeight = Dimensions.get("window").height;
 
 const Welcome1 = () => {
-  return (
-    <ImageBackground
-      style={styles.container}
-      source={require("./assets/background.png")}
-      imageStyle={styles.background}>
+  return <ImageBackground style={styles.container} source={require("./assets/background.png")} imageStyle={styles.background}>
       <Text style={styles.heading}>Welcome Back</Text>
       <Text style={styles.description}>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Non at sed.
       </Text>
       <View style={styles.buttonContainer}>
         <Button buttonText="Sign Up" style={styles.button} />
-        <Button
-          buttonText="Login"
-          style={styles.button}
-          borderColor="#000"
-          backgroundColor="#fff"
-          textColor="#000"
-          hideShadow
-        />
+        <Button buttonText="Login" style={styles.button} borderColor="#000" backgroundColor="#fff" textColor="#000" hideShadow />
       </View>
-    </ImageBackground>
-  );
+    </ImageBackground>;
 };
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -75,7 +56,6 @@ const styles = StyleSheet.create({
     position: "absolute"
   }
 });
-
 export default Welcome1;
 
 const Button = params => {
@@ -89,20 +69,16 @@ const Button = params => {
   const btnText = {
     color: textColor
   };
-  return (
-    <View style={[buttonStyles.btnContainer, params.style]}>
+  return <View style={[buttonStyles.btnContainer, params.style]}>
       <View style={!params.hideShadow ? buttonStyles.shadowContainer : null}>
-        <Pressable
-          style={[buttonStyles.btn, btnStyle]}
-          onPress={params.onPress}>
+        <Pressable style={[buttonStyles.btn, btnStyle]} onPress={params.onPress}>
           <Text style={[buttonStyles.btnText, btnText]}>
             {params.buttonText}
           </Text>
           <View style={styles.childrenContainer}>{params.children}</View>
         </Pressable>
       </View>
-    </View>
-  );
+    </View>;
 };
 
 const buttonStyles = StyleSheet.create({
@@ -128,7 +104,6 @@ const buttonStyles = StyleSheet.create({
     borderRadius: 10,
     justifyContent: "center",
     alignItems: "center",
-
     flexDirection: "row"
   },
   btnText: {

@@ -1,132 +1,99 @@
 import React, { useState, useEffect } from "react";
-import {
-  Text,
-  StyleSheet,
-  View,
-  SafeAreaView,
-  FlatList,
-  Image
-} from "react-native";
+import { Text, StyleSheet, View, SafeAreaView, FlatList, Image } from "react-native";
 
-const ArchiveContent = (params) => {
+const ArchiveContent = params => {
   const [data, setData] = useState([]);
   useEffect(() => {
-    setData([
-      {
-        id: 1,
-        archiveDate: "7 MAR",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 2,
-        archiveDate: "10 APR",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 3,
-        archiveDate: "13 MAY",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 4,
-        archiveDate: "16 JUN",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 5,
-        archiveDate: "5 JAN",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 6,
-        archiveDate: "18 JUL",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 7,
-        archiveDate: "21 AUG",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 8,
-        archiveDate: "24 SEP",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 9,
-        archiveDate: "27 OCT",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 10,
-        archiveDate: "30 NOV",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 11,
-        archiveDate: "1 DEC",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 12,
-        archiveDate: "4 JAN",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 13,
-        archiveDate: "30 NOV",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 14,
-        archiveDate: "1 DEC",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 15,
-        archiveDate: "4 JAN",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 16,
-        archiveDate: "30 NOV",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 17,
-        archiveDate: "1 DEC",
-        imageSrc: require("./assets/crowdbotics.png")
-      },
-      {
-        id: 18,
-        archiveDate: "4 JAN",
-        imageSrc: require("./assets/crowdbotics.png")
-      }
-    ]);
+    setData([{
+      id: 1,
+      archiveDate: "7 MAR",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 2,
+      archiveDate: "10 APR",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 3,
+      archiveDate: "13 MAY",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 4,
+      archiveDate: "16 JUN",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 5,
+      archiveDate: "5 JAN",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 6,
+      archiveDate: "18 JUL",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 7,
+      archiveDate: "21 AUG",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 8,
+      archiveDate: "24 SEP",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 9,
+      archiveDate: "27 OCT",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 10,
+      archiveDate: "30 NOV",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 11,
+      archiveDate: "1 DEC",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 12,
+      archiveDate: "4 JAN",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 13,
+      archiveDate: "30 NOV",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 14,
+      archiveDate: "1 DEC",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 15,
+      archiveDate: "4 JAN",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 16,
+      archiveDate: "30 NOV",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 17,
+      archiveDate: "1 DEC",
+      imageSrc: require("./assets/crowdbotics.png")
+    }, {
+      id: 18,
+      archiveDate: "4 JAN",
+      imageSrc: require("./assets/crowdbotics.png")
+    }]);
   }, []);
-  return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        style={styles.list}
-        data={data}
-        numColumns={3}
-        renderItem={({ item }) => <Post post={item} />}
-        keyExtractor={(item) => item.id.toString()}
-        columnWrapperStyle={{
-          justifyContent: "space-between"
-        }}
-      />
-    </SafeAreaView>
-  );
+  return <SafeAreaView style={styles.container}>
+      <FlatList style={styles.list} data={data} numColumns={3} renderItem={({
+      item
+    }) => <Post post={item} />} keyExtractor={item => item.id.toString()} columnWrapperStyle={{
+      justifyContent: "space-between"
+    }} />
+    </SafeAreaView>;
 };
 
-const Post = ({ post }) => {
-  return (
-    <View style={styles.postContainer}>
+const Post = ({
+  post
+}) => {
+  return <View style={styles.postContainer}>
       <Image source={post.imageSrc} style={styles.image} />
       <Text style={styles.archiveDate}>{post.archiveDate}</Text>
-    </View>
-  );
+    </View>;
 };
 
 const styles = StyleSheet.create({
