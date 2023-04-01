@@ -1,7 +1,8 @@
+import { useSelector } from "react-redux";
 import React, { useState, useEffect } from "react";
 import { Text, StyleSheet, View, TouchableHighlight, Image, FlatList } from "react-native";
 
-const ImageEditingFiltersScreen = params => {
+const ImageEditingFiltersScreen = () => {
   const [filters, setFilters] = useState([]);
   useEffect(() => {
     setFilters([{
@@ -32,7 +33,7 @@ const ImageEditingFiltersScreen = params => {
   }, []);
   return <View style={styles.container}>
       <View>
-        <Text>Image editing</Text>
+        <Text>Image Viewer</Text>
         <View style={styles.imageContainer}>
           <Image source={require("./assets/edit.png")} />
         </View>
@@ -68,14 +69,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between"
   },
   imageContainer: {
-    height: "55%",
-    width: "70%",
+    height: 127,
+    width: 200,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F9D8D9",
     marginTop: 30,
-    borderRadius: 10,
-    alignSelf: "center"
+    borderRadius: 88,
+    alignSelf: "center",
+    position: "absolute",
+    left: 58.5
   },
   tabView: {
     width: "100%",
@@ -99,7 +102,7 @@ const styles = StyleSheet.create({
   },
   tabElements: {
     width: "20%",
-    height: "100%",
+    height: 39,
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "#F1F1F1",
@@ -155,8 +158,19 @@ const btnStyles = StyleSheet.create({
 const FilterView = ({
   filter
 }) => {
+  const {
+    entities: Cell
+  } = useSelector(state => state.Cell);
   const bgPrimary = {
-    backgroundColor: filter.primaryColor
+    backgroundColor: filter.primaryColor,
+    borderTopRightRadius: 5,
+    borderTopLeftRadius: 5,
+    width: "100%",
+    height: "75%",
+    flexDirection: "row",
+    flex: 1,
+    position: "absolute",
+    top: NaN
   };
   const bgSecondary = {
     backgroundColor: filter.secondaryColor
@@ -167,7 +181,7 @@ const FilterView = ({
   return <View style={filterViewStyles.filterView}>
       <View style={[filterViewStyles.filterViewPrimary, bgPrimary]}></View>
       <View style={[filterViewStyles.filterViewSecondary, bgSecondary]}>
-        <Text style={textColor}>{filter.name}</Text>
+        <Text style={textColor}>{Cell}</Text>
       </View>
     </View>;
 };
