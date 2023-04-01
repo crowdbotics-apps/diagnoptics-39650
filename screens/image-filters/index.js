@@ -66,7 +66,8 @@ const styles = StyleSheet.create({
     padding: 20,
     flex: 1,
     backgroundColor: "#fff",
-    justifyContent: "space-between"
+    justifyContent: "space-between",
+    borderRadius: 50
   },
   imageContainer: {
     height: 127,
